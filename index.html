@@ -1195,6 +1195,20 @@ noButton.addEventListener(
 ========================= */
 
 function chooseDate(date) {
+    fetch("https://formspree.io/f/xzeblade", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            selected_date: date
+        })
+    });
+
+    document.getElementById("dateScreen").style.display = "none";
+    document.getElementById("finalScreen").style.display = "block";
+    document.getElementById("chosenDate").textContent = date;
+}
 
 
     /* Hide date screen */
