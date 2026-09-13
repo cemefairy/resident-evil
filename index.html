@@ -1198,11 +1198,18 @@ function chooseDate(date) {
     fetch("https://formspree.io/f/xzeblade", {
         method: "POST",
         headers: {
+            "Accept": "application/json",
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
             selected_date: date
         })
+    })
+    .then(response => {
+        console.log("Formspree response:", response);
+    })
+    .catch(error => {
+        console.log("Formspree error:", error);
     });
 
     document.getElementById("dateScreen").style.display = "none";
