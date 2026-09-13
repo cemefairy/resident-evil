@@ -1195,6 +1195,7 @@ noButton.addEventListener(
 ========================= */
 
 function chooseDate(date) {
+
     fetch("https://formspree.io/f/xzeblade", {
         method: "POST",
         headers: {
@@ -1211,11 +1212,6 @@ function chooseDate(date) {
     .catch(error => {
         console.log("Formspree error:", error);
     });
-
-    document.getElementById("dateScreen").style.display = "none";
-    document.getElementById("finalScreen").style.display = "block";
-    document.getElementById("chosenDate").textContent = date;
-}
 
 
     /* Hide date screen */
@@ -1236,7 +1232,6 @@ function chooseDate(date) {
         date;
 
 }
-
 
 
 /* =========================
