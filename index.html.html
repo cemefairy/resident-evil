@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Movie Date?</title>
+
+
+<style>
+
+/* =========================
+   GENERAL PAGE
+========================= */
+
+body {
+
+    margin: 0;
+
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #fdf1f5;
+
+    font-family: Georgia, serif;
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   FLOATING HEARTS
+========================= */
+
+.heart {
+
+    position: fixed;
+
+    bottom: -50px;
+
+    color: #e8a8bd;
+
+    font-size: 20px;
+
+    opacity: 0.5;
+
+    pointer-events: none;
+
+    animation: floatUp linear infinite;
+
+}
+
+
+@keyframes floatUp {
+
+    0% {
+
+        transform: translateY(0) rotate(0deg);
+
+        opacity: 0;
+
+    }
+
+    10% {
+
+        opacity: 0.5;
+
+    }
+
+    80% {
+
+        opacity: 0.4;
+
+    }
+
+    100% {
+
+        transform:
+            translateY(-110vh)
+            rotate(20deg);
+
+        opacity: 0;
+
+    }
+
+}
+
+
+/* =========================
+   MAIN CARD
+========================= */
+
+.container {
+
+    background: rgba(255, 255, 255, 0.94);
+
+    width: 500px;
+
+    max-width: 80%;
+
+    padding: 55px;
+
+    text-align: center;
+
+    border-radius: 30px;
+
+    box-shadow:
+        0 15px 40px rgba(180, 100, 130, 0.15);
+
+    border: 1px solid #f6dce6;
+
+    position: relative;
+
+    z-index: 10;
+
+    animation: cardAppear 0.5s ease;
+
+}
+
+
+@keyframes cardAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform: scale(0.96);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: scale(1);
+
+    }
+
+}
+
+
+/* =========================
+   HEADINGS
+========================= */
+
+h1 {
+
+    color: #c85c82;
+
+    font-size: 38px;
+
+    font-weight: normal;
+
+    margin-bottom: 25px;
+
+}
+
+
+/* =========================
+   TEXT
+========================= */
+
+p {
+
+    color: #765866;
+
+    font-size: 18px;
+
+    line-height: 1.7;
+
+}
+
+
+/* =========================
+   YES BUTTON
+========================= */
+
+#yesButton {
+
+    background: #d982a2;
+
+    color: white;
+
+    border: none;
+
+    padding: 14px 32px;
+
+    border-radius: 30px;
+
+    font-family: Georgia, serif;
+
+    font-size: 17px;
+
+    cursor: pointer;
+
+    margin: 15px;
+
+    transition: all 0.25s ease;
+
+    animation: yesPulse 2.2s infinite;
+
+}
+
+
+#yesButton:hover {
+
+    background: #c96f93;
+
+    transform: scale(1.1);
+
+    box-shadow:
+        0 8px 25px rgba(201, 111, 147, 0.35);
+
+    animation: none;
+
+}
+
+
+@keyframes yesPulse {
+
+    0% {
+
+        box-shadow:
+            0 0 0 0 rgba(217, 130, 162, 0.35);
+
+    }
+
+    70% {
+
+        box-shadow:
+            0 0 0 10px rgba(217, 130, 162, 0);
+
+    }
+
+    100% {
+
+        box-shadow:
+            0 0 0 0 rgba(217, 130, 162, 0);
+
+    }
+
+}
+
+
+/* =========================
+   NO BUTTON
+========================= */
+
+#noButton {
+
+    background: #f3e8ec;
+
+    color: #8c707b;
+
+    border: none;
+
+    padding: 14px 32px;
+
+    border-radius: 30px;
+
+    font-family: Georgia, serif;
+
+    font-size: 17px;
+
+    cursor: pointer;
+
+    margin: 15px;
+
+    position: absolute;
+
+    transition:
+        left 0.15s ease,
+        top 0.15s ease,
+        background 0.2s ease;
+
+}
+
+
+#noButton:hover {
+
+    background: #ead9df;
+
+}
+
+
+/* =========================
+   DATE BUTTONS
+========================= */
+
+.dateButton {
+
+    display: block;
+
+    width: 230px;
+
+    margin: 14px auto;
+
+    padding: 13px;
+
+    background: #f8dce6;
+
+    color: #805064;
+
+    border: none;
+
+    border-radius: 25px;
+
+    font-family: Georgia, serif;
+
+    font-size: 17px;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+
+    box-shadow:
+        0 3px 8px rgba(200, 100, 130, 0.08);
+
+}
+
+
+.dateButton:hover {
+
+    background: #efc4d4;
+
+    transform: scale(1.07);
+
+    box-shadow:
+        0 8px 20px rgba(200, 100, 130, 0.18);
+
+}
+
+
+.dateButton:active {
+
+    transform: scale(0.96);
+
+}
+
+
+/* =========================
+   HIDDEN
+========================= */
+
+.hidden {
+
+    display: none;
+
+}
+
+
+/* =========================
+   MOVIE TICKET
+========================= */
+
+.ticket {
+
+    position: relative;
+
+    margin: 25px auto 10px auto;
+
+    width: 360px;
+
+    max-width: 90%;
+
+    min-height: 210px;
+
+    background: #fff7fa;
+
+    border: 2px solid #e6a9bd;
+
+    border-radius: 18px;
+
+    box-sizing: border-box;
+
+    padding: 25px 30px;
+
+    box-shadow:
+        0 10px 30px rgba(180, 100, 130, 0.18);
+
+    overflow: hidden;
+
+    animation: ticketAppear 0.7s ease;
+
+}
+
+
+.ticket::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    right: 0;
+
+    top: 78px;
+
+    border-top: 2px dashed #e6a9bd;
+
+}
+
+
+.ticket::after {
+
+    content: "✦";
+
+    position: absolute;
+
+    right: 18px;
+
+    top: 20px;
+
+    color: #e6a9bd;
+
+    font-size: 18px;
+
+}
+
+
+@keyframes ticketAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(15px)
+            rotate(-1deg);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+    }
+
+}
+
+
+/* =========================
+   TICKET TEXT
+========================= */
+
+.ticketTop {
+
+    color: #b95b7d;
+
+    font-size: 13px;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.ticketMovie {
+
+    color: #c85c82;
+
+    font-size: 27px;
+
+    letter-spacing: 2px;
+
+    margin-top: 22px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.ticketDate {
+
+    color: #765866;
+
+    font-size: 17px;
+
+    margin-top: 12px;
+
+}
+
+
+.ticketReserved {
+
+    color: #b95b7d;
+
+    font-size: 14px;
+
+    letter-spacing: 2px;
+
+    margin-top: 18px;
+
+}
+
+
+.ticketHearts {
+
+    color: #d982a2;
+
+    font-size: 17px;
+
+    margin-top: 8px;
+
+    letter-spacing: 5px;
+
+}
+
+
+/* =========================
+   FINAL TEXT
+========================= */
+
+.finalText {
+
+    font-size: 19px;
+
+}
+
+
+/* =========================
+   OTTER GIF
+========================= */
+
+.otterGif {
+
+    width: 230px;
+
+    max-width: 80%;
+
+    margin-top: 20px;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 8px 25px rgba(180, 100, 130, 0.18);
+
+}
+
+
+/* =========================
+   CLICKABLE HEARTS
+========================= */
+
+.finalHearts {
+
+    font-size: 20px;
+
+    color: #e89ab5;
+
+    letter-spacing: 10px;
+
+    margin-top: 10px;
+
+}
+
+
+.secretHeart {
+
+    display: inline-block;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+
+}
+
+
+.secretHeart:hover {
+
+    transform: scale(1.3);
+
+    color: #c85c82;
+
+}
+
+
+.secretHeart.clicked {
+
+    animation: heartClick 0.5s ease;
+
+}
+
+
+@keyframes heartClick {
+
+    0% {
+
+        transform: scale(1);
+
+    }
+
+    50% {
+
+        transform:
+            scale(1.6)
+            rotate(-10deg);
+
+    }
+
+    100% {
+
+        transform: scale(1);
+
+    }
+
+}
+
+
+/* =========================
+   SECRET MESSAGE
+========================= */
+
+.secretMessage {
+
+    display: none;
+
+    margin-top: 18px;
+
+    animation: secretAppear 0.7s ease;
+
+}
+
+
+.secretMessage.show {
+
+    display: block;
+
+}
+
+
+.secretTitle {
+
+    color: #c85c82;
+
+    font-size: 17px;
+
+    margin-bottom: 6px;
+
+}
+
+
+.secretText {
+
+    color: #765866;
+
+    font-size: 15px;
+
+    font-style: italic;
+
+    line-height: 1.6;
+
+}
+
+
+@keyframes secretAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(8px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+
+/* =========================
+   SECRET FLOATING HEARTS
+========================= */
+
+.secretFloat {
+
+    position: fixed;
+
+    pointer-events: none;
+
+    color: #e89ab5;
+
+    font-size: 18px;
+
+    animation:
+        secretFloat 1.5s ease-out forwards;
+
+    z-index: 100;
+
+}
+
+
+@keyframes secretFloat {
+
+    0% {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform:
+            translateY(-80px)
+            scale(1.4);
+
+    }
+
+}
+
+
+/* =========================
+   HIDDEN MUSIC PLAYER
+========================= */
+
+#musicFrame {
+
+    position: fixed;
+
+    width: 0 !important;
+
+    height: 0 !important;
+
+    left: -10000px;
+
+    top: -10000px;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    border: 0 !important;
+
+}
+
+</style>
+
+</head>
+
+
+
+<body>
+
+
+<!-- =========================
+     FLOATING HEARTS
+========================= -->
+
+<div class="heart" style="left: 3%; animation-duration: 12s; animation-delay: 0s;">♡</div>
+<div class="heart" style="left: 8%; animation-duration: 16s; animation-delay: 2s;">♡</div>
+<div class="heart" style="left: 13%; animation-duration: 11s; animation-delay: 5s;">♡</div>
+<div class="heart" style="left: 18%; animation-duration: 14s; animation-delay: 1s;">♡</div>
+<div class="heart" style="left: 23%; animation-duration: 17s; animation-delay: 7s;">♡</div>
+<div class="heart" style="left: 28%; animation-duration: 12s; animation-delay: 4s;">♡</div>
+<div class="heart" style="left: 33%; animation-duration: 15s; animation-delay: 8s;">♡</div>
+<div class="heart" style="left: 38%; animation-duration: 13s; animation-delay: 3s;">♡</div>
+<div class="heart" style="left: 43%; animation-duration: 18s; animation-delay: 6s;">♡</div>
+<div class="heart" style="left: 48%; animation-duration: 12s; animation-delay: 9s;">♡</div>
+<div class="heart" style="left: 53%; animation-duration: 16s; animation-delay: 2s;">♡</div>
+<div class="heart" style="left: 58%; animation-duration: 14s; animation-delay: 5s;">♡</div>
+<div class="heart" style="left: 63%; animation-duration: 17s; animation-delay: 0s;">♡</div>
+<div class="heart" style="left: 68%; animation-duration: 11s; animation-delay: 7s;">♡</div>
+<div class="heart" style="left: 73%; animation-duration: 15s; animation-delay: 3s;">♡</div>
+<div class="heart" style="left: 78%; animation-duration: 13s; animation-delay: 8s;">♡</div>
+<div class="heart" style="left: 83%; animation-duration: 18s; animation-delay: 4s;">♡</div>
+<div class="heart" style="left: 88%; animation-duration: 12s; animation-delay: 1s;">♡</div>
+<div class="heart" style="left: 93%; animation-duration: 16s; animation-delay: 6s;">♡</div>
+<div class="heart" style="left: 98%; animation-duration: 14s; animation-delay: 9s;">♡</div>
+
+
+
+<!-- =========================
+     MUSIC
+========================= -->
+
+<iframe
+    id="musicFrame"
+    src=""
+    allow="autoplay">
+</iframe>
+
+
+
+<!-- =========================
+     START SCREEN
+========================= -->
+
+<div
+    class="container"
+    id="startScreen">
+
+    <h1>
+        Hey you...
+    </h1>
+
+
+    <p>
+        Do you wanna go on a movie date with me?
+    </p>
+
+
+    <button
+        id="yesButton"
+        onclick="showDates()">
+
+        YES ♡
+
+    </button>
+
+
+    <button id="noButton">
+
+        NO :(
+
+    </button>
+
+</div>
+
+
+
+<!-- =========================
+     DATE SCREEN
+========================= -->
+
+<div
+    class="container hidden"
+    id="dateScreen">
+
+    <h1>
+        YAY!
+    </h1>
+
+
+    <p>
+        I was hoping you'd say yes...
+    </p>
+
+
+    <p>
+
+        <strong>
+            What day would you prefer to be taken out on?
+        </strong>
+
+    </p>
+
+
+    <button
+        class="dateButton"
+        onclick="chooseDate('September 18th')">
+
+        🌻 18 September
+
+    </button>
+
+
+    <button
+        class="dateButton"
+        onclick="chooseDate('September 20th')">
+
+        🌻 20 September
+
+    </button>
+
+
+    <button
+        class="dateButton"
+        onclick="chooseDate('September 21st')">
+
+        🌻 21 September
+
+    </button>
+
+
+    <button
+        class="dateButton"
+        onclick="chooseDate('September 22nd')">
+
+        🌻 22 September
+
+    </button>
+
+
+    <button
+        class="dateButton"
+        onclick="chooseDate('September 23rd')">
+
+        🌻 23 September
+
+    </button>
+
+</div>
+
+
+
+<!-- =========================
+     TICKET / FINAL SCREEN
+========================= -->
+
+<div
+    class="container hidden"
+    id="ticketScreen">
+
+
+    <h1>
+        It's a date!
+    </h1>
+
+
+    <div class="ticket">
+
+
+        <div class="ticketTop">
+
+            ADMIT ONE
+
+        </div>
+
+
+        <div class="ticketMovie">
+
+            RESIDENT EVIL
+
+        </div>
+
+
+        <div class="ticketDate">
+
+            <span id="ticketDate"></span>
+
+        </div>
+
+
+        <div class="ticketReserved">
+
+            ♡ RESERVED FOR YOU ♡
+
+        </div>
+
+
+        <div class="ticketHearts">
+
+            ♥　♥　♥
+
+        </div>
+
+
+    </div>
+
+
+    <p class="finalText">
+
+        Can't wait !!
+
+    </p>
+
+
+    <!-- =========================
+         CLICKABLE HEARTS
+    ========================= -->
+
+    <div class="finalHearts">
+
+
+        <span
+            class="secretHeart"
+            onclick="unlockSecret(this)">
+
+            ♡
+
+        </span>
+
+
+        <span
+            class="secretHeart"
+            onclick="unlockSecret(this)">
+
+            ♥
+
+        </span>
+
+
+        <span
+            class="secretHeart"
+            onclick="unlockSecret(this)">
+
+            ♡
+
+        </span>
+
+
+        <span
+            class="secretHeart"
+            onclick="unlockSecret(this)">
+
+            ♥
+
+        </span>
+
+
+        <span
+            class="secretHeart"
+            onclick="unlockSecret(this)">
+
+            ♡
+
+        </span>
+
+
+    </div>
+
+
+    <!-- =========================
+         SECRET MESSAGE
+    ========================= -->
+
+    <div
+        class="secretMessage"
+        id="secretMessage">
+
+
+        <div class="secretTitle">
+
+            ✨ easter egg unlocked! ✨
+
+        </div>
+
+
+        <div class="secretText">
+
+            I may or may not have made this entire thing
+            because I like you a lot. ♡
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =========================
+         OTTER
+    ========================= -->
+
+    <img
+        class="otterGif"
+        src="https://media1.tenor.com/m/sMoq4RyYZuIAAAAd/otters-cute.gif"
+        alt="Cute otter cuddle">
+
+</div>
+
+
+
+<script>
+
+
+/* =========================
+   YES BUTTON + MUSIC
+========================= */
+
+function showDates() {
+
+
+    /*
+       Start the song after
+       clicking YES.
+    */
+
+    document.getElementById("musicFrame").src =
+        "https://www.youtube.com/embed/JSxzqeSi9NQ?autoplay=1&loop=1&playlist=JSxzqeSi9NQ";
+
+
+    /* Hide start screen */
+
+    document.getElementById("startScreen").style.display =
+        "none";
+
+
+    /* Show date screen */
+
+    document.getElementById("dateScreen").style.display =
+        "block";
+
+}
+
+
+
+/* =========================
+   NO BUTTON
+========================= */
+
+var noButton =
+    document.getElementById("noButton");
+
+
+var noMessages = [
+
+    "are you sure :(",
+
+    "reconsider, please!",
+
+    "wrong answer!!",
+
+    "please don't tease me like this"
+
+];
+
+
+var noIndex = 0;
+
+
+noButton.addEventListener(
+    "mouseover",
+    function() {
+
+
+        /* Change text */
+
+        if (noIndex < noMessages.length) {
+
+            noButton.textContent =
+                noMessages[noIndex];
+
+            noIndex++;
+
+        }
+
+
+        /* Calculate boundaries */
+
+        var maxX =
+            window.innerWidth -
+            noButton.offsetWidth -
+            20;
+
+
+        var maxY =
+            window.innerHeight -
+            noButton.offsetHeight -
+            20;
+
+
+        /* Random position */
+
+        var randomX =
+            Math.random() * maxX;
+
+
+        var randomY =
+            Math.random() * maxY;
+
+
+        /* Move button */
+
+        noButton.style.position =
+            "fixed";
+
+
+        noButton.style.left =
+            randomX + "px";
+
+
+        noButton.style.top =
+            randomY + "px";
+
+    }
+);
+
+
+
+/* =========================
+   DATE SELECTION
+========================= */
+
+function chooseDate(date) {
+
+
+    /* Hide date screen */
+
+    document.getElementById("dateScreen").style.display =
+        "none";
+
+
+    /* Show ticket */
+
+    document.getElementById("ticketScreen").style.display =
+        "block";
+
+
+    /* Add selected date */
+
+    document.getElementById("ticketDate").textContent =
+        date;
+
+}
+
+
+
+/* =========================
+   EASTER EGG
+========================= */
+
+function unlockSecret(heart) {
+
+
+    /* Show secret message */
+
+    document
+        .getElementById("secretMessage")
+        .classList
+        .add("show");
+
+
+    /* Animate clicked heart */
+
+    heart.classList.add("clicked");
+
+
+    /* Create floating hearts */
+
+    for (var i = 0; i < 8; i++) {
+
+
+        var miniHeart =
+            document.createElement("div");
+
+
+        miniHeart.className =
+            "secretFloat";
+
+
+        miniHeart.textContent =
+            "♡";
+
+
+        /* Get heart position */
+
+        var rect =
+            heart.getBoundingClientRect();
+
+
+        miniHeart.style.left =
+            (
+                rect.left +
+                Math.random() * 30 -
+                15
+            ) + "px";
+
+
+        miniHeart.style.top =
+            (
+                rect.top +
+                Math.random() * 20 -
+                10
+            ) + "px";
+
+
+        document.body.appendChild(
+            miniHeart
+        );
+
+
+        /* Remove after animation */
+
+        setTimeout(
+
+            function(element) {
+
+                return function() {
+
+                    element.remove();
+
+                };
+
+            }(miniHeart),
+
+            1500
+
+        );
+
+    }
+
+}
+
+</script>
+
+
+</body>
+
+</html>
